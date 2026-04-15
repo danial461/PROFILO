@@ -342,19 +342,26 @@ export default function CourseEditor() {
                             placeholder="Paste YouTube Embed URL or upload a file below"
                             className="w-full border border-gray-300 rounded-md px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           />
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-gray-500 font-medium">OR</span>
-                            <label className={`cursor-pointer bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-xs font-medium py-1.5 px-3 rounded-md transition-colors flex items-center gap-1 ${uploadingModules[module.id] ? 'opacity-50 pointer-events-none' : ''}`}>
-                              <Video size={14} />
-                              {uploadingModules[module.id] ? 'Uploading...' : 'Upload Video File'}
-                              <input 
-                                type="file" 
-                                accept="video/*" 
-                                className="hidden" 
-                                onChange={(e) => handleFileUpload(e, 'video', module.id)}
-                                disabled={uploadingModules[module.id]}
-                              />
-                            </label>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2">
+                              <span className="text-xs text-gray-500 font-medium">OR</span>
+                              <label className={`cursor-pointer bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-xs font-medium py-1.5 px-3 rounded-md transition-colors flex items-center gap-1 ${uploadingModules[module.id] ? 'opacity-50 pointer-events-none' : ''}`}>
+                                <Video size={14} />
+                                {uploadingModules[module.id] ? 'Uploading...' : 'Upload Video File'}
+                                <input 
+                                  type="file" 
+                                  accept="video/mp4,video/webm,video/ogg" 
+                                  className="hidden" 
+                                  onChange={(e) => handleFileUpload(e, 'video', module.id)}
+                                  disabled={uploadingModules[module.id]}
+                                />
+                              </label>
+                            </div>
+                            <div className="bg-blue-50 border border-blue-100 rounded-lg p-2">
+                              <p className="text-[10px] text-blue-700 leading-tight">
+                                <span className="font-bold">Direct Video Upload:</span> You can upload MP4, WebM, or OGG files. These files will be securely stored and served from our backend.
+                              </p>
+                            </div>
                           </div>
                           {module.videoUrl.startsWith('/uploads/') && (
                             <p className="text-xs text-green-600 mt-1">
